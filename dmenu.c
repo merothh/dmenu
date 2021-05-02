@@ -25,7 +25,7 @@
 #define LENGTH(X)             (sizeof X / sizeof X[0])
 #define TEXTW(X)              (drw_fontset_getwidth(drw, (X)) + lrpad)
 
-/* enums */
+tatic const unsigned int border_width = 5;* enums */
 enum { SchemeNorm, SchemeSel, SchemeOut, SchemeLast }; /* color schemes */
 
 struct item {
@@ -688,9 +688,10 @@ setup(void)
 	swa.override_redirect = True;
 	swa.background_pixel = scheme[SchemeNorm][ColBg].pixel;
 	swa.event_mask = ExposureMask | KeyPressMask | VisibilityChangeMask;
-	win = XCreateWindow(dpy, parentwin, x, y, mw, mh, 0,
+	win = XCreateWindow(dpy, parentwin, x, y, mw, mh, border_width,
 	                    CopyFromParent, CopyFromParent, CopyFromParent,
 	                    CWOverrideRedirect | CWBackPixel | CWEventMask, &swa);
+	XSetWindowBorder(dpy, win, scheme[SchemeSel][ColBg].pixel);
 	XSetClassHint(dpy, win, &ch);
 
 
