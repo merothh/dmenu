@@ -11,7 +11,7 @@ static const char *fonts[] = {
 static const unsigned int bgalpha = 0xa0;
 static const unsigned int fgalpha = OPAQUE;
 static const unsigned int selalpha = 0xc0;
-static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
+static const char *prompt      = "run:";      /* -p  option; prompt to the left of input field */
 static const char *colors[SchemeLast][2] = {
 	/*     fg         bg       */
 	[SchemeNorm] = { "#bbbbbb", "#222222" },
