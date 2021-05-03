@@ -153,7 +153,7 @@ drawmenu(void)
 	drw_rect(drw, 0, 0, mw, mh, 1, 1);
 
 	if (prompt && *prompt) {
-		drw_setscheme(drw, scheme[SchemeSel]);
+		drw_setscheme(drw, scheme[SchemeNorm]);
 		x = drw_text(drw, x, 0, promptw, bh, lrpad / 2, prompt, 0);
 	}
 	/* draw input field */
@@ -166,6 +166,8 @@ drawmenu(void)
 		drw_setscheme(drw, scheme[SchemeNorm]);
 		drw_rect(drw, x + curpos, 2, 2, bh - 4, 1, 0);
 	}
+
+	x -= promptw;
 
 	if (lines > 0) {
 		/* draw grid */
@@ -633,7 +635,7 @@ setup(void)
 	bh = drw->fonts->h + 2;
 	lines = MAX(lines, 0);
 	mh = (lines + 1) * bh;
-	promptw = (prompt && *prompt) ? TEXTW(prompt) - lrpad / 4 : 0;
+	promptw = (prompt && *prompt) ? TEXTW(prompt) - lrpad / 2 : 0;
 #ifdef XINERAMA
 	i = 0;
 	if (parentwin == root && (info = XineramaQueryScreens(dpy, &n))) {
